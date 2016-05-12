@@ -2,7 +2,7 @@ cslog
 ===
 
 ### How to use:
-1. Download the latest cslog.dll
+1. [Download](https://github.com/TheJaydox/cslog/releases) the latest cslog.dll
 2. In your project, add the DLL reference, in the project: `using cslog;`
 3. Set your log file/location (if no leading path is set, it will default to the running dir)
 `Logger.LogFile = "<filename>.log";`
