@@ -17,12 +17,12 @@ Logger.Log(string message, ErrorLevel level = ErrorLevel.Info);
 
 **Serialize an object (Make sure `[Serializable]` is set) and log (Default format = JSON)**
 ```cs
-Object<T>(T obj, ErrorLevel level = ErrorLevel.Info);
+Logger.Object<T>(T obj, ErrorLevel level = ErrorLevel.Info);
 ```
 
 **Exception**
 ```cs
-Exception(Exception ex);
+Logger.Exception(Exception ex);
 ```
 
 ### License
