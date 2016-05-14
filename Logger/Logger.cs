@@ -26,7 +26,7 @@ namespace cslog
     public class Logger
     {
         // Version of the Logger Class
-        private static string Version = "1.0";
+        private static string Version = "1.1";
 
         // Task & Collection
         private static BlockingCollection<LogEntry> Queue = new BlockingCollection<LogEntry>();
@@ -41,7 +41,6 @@ namespace cslog
 
         public static void Log(string message, ErrorLevel level = ErrorLevel.Info, [CallerMemberName]string caller = "")
         {
-            //Console.WriteLine("Adding to queue: " + entry.Message);
             Queue.Add(new LogEntry(level, caller, message));
             StartWriterTask();
         }
@@ -60,21 +59,26 @@ namespace cslog
 
         private static string toJSON<T>(T obj)
         {
-            DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(T));
-            MemoryStream ms = new MemoryStream();
-            serializer.WriteObject(ms, obj);
+            try
+            {
+                DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(T));
+                MemoryStream ms = new MemoryStream();
+                serializer.WriteObject(ms, obj);
 
-            // Create JSON string for logging
-            return Encoding.Default.GetString(ms.ToArray());
+                // Create JSON string for logging
+                return Encoding.Default.GetString(ms.ToArray());
+            }
+            catch (Exception ex)
+            {
+                return ex.StackTrace;
+            }
+
         }
 
         private static void StartWriterTask()
         {
-            Console.WriteLine("Start Writer Called!");
             if (TaskCreated == false)
             {
-                Console.WriteLine("Logger Task Started!");
-
                 // Update Task Status
                 TaskCreated = true;
 
@@ -99,9 +103,6 @@ namespace cslog
 
         private static string StringOut(LogEntry entry)
         {
-
-            Console.WriteLine(entry.Message);
-
             string output = String.Format("{0} :: {1} [{2}] {3}",
                 entry.DT,
                 entry.Level,
