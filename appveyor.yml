@@ -1,0 +1,17 @@
+version: 1.0.{build}
+configuration: Release
+platform: Any CPU
+build:
+  verbosity: minimal
+deploy:
+- provider: NuGet
+  api_key:
+    secure: 4lWivZ3z3d4Nb06zYDx8uyx+2b6iiH53U1evV6XaaMhNwzcHA3v13Bldgc5evKCw
+notifications:
+- provider: Email
+  to:
+  - jay@tdm.io
+  subject: cslog - AppVeyor
+  on_build_success: true
+  on_build_failure: true
+  on_build_status_changed: true

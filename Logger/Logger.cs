@@ -9,6 +9,7 @@
 using System;
 using System.Collections.Concurrent;
 using System.IO;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.Serialization.Json;
 using System.Text;
@@ -26,7 +27,7 @@ namespace cslog
     public class Logger
     {
         // Version of the Logger Class
-        private static string Version = "1.0";
+        private static string Version = Assembly.GetExecutingAssembly().GetName().Version.ToString();
 
         // Task & Collection
         private static BlockingCollection<LogEntry> Queue = new BlockingCollection<LogEntry>();
@@ -60,12 +61,19 @@ namespace cslog
 
         private static string toJSON<T>(T obj)
         {
-            DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(T));
-            MemoryStream ms = new MemoryStream();
-            serializer.WriteObject(ms, obj);
+            try
+            {
+                DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(T));
+                MemoryStream ms = new MemoryStream();
+                serializer.WriteObject(ms, obj);
 
-            // Create JSON string for logging
-            return Encoding.Default.GetString(ms.ToArray());
+                // Create JSON string for logging
+                return Encoding.Default.GetString(ms.ToArray());
+            }
+            catch (Exception ex)
+            {
+                return ex.StackTrace;
+            }
         }
 
         private static void StartWriterTask()
