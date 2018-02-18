@@ -2,17 +2,17 @@
 <package >
   <metadata>
     <id>cslog</id>
-    <version>1.1.0</version>
-    <authors>Jared Booker jay@tdm.io</authors>
-    <owners>Jared Booker</owners>
-    <licenseUrl>https://github.com/TheJaydox/cslog/blob/master/LICENSE</licenseUrl>
-    <projectUrl>https://github.com/TheJaydox/cslog</projectUrl>
+    <version>1.1.1</version>
+    <authors>Emma Booker jay@tdm.io</authors>
+    <owners>Emma Booker</owners>
+    <licenseUrl>https://github.com/rileyio/cslog/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/rileyio/cslog</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Simple CSharp Logger</description>
     <releaseNotes>
       - Wrapping toJson in Try block
     </releaseNotes>
-    <copyright>Copyright (c) 2016 Jared Booker (tdm.io)</copyright>
+    <copyright>Copyright (c) 2016-2018 Emma Booker (tdm.io)</copyright>
     <tags>logging logger</tags>
   </metadata>
   <files>
