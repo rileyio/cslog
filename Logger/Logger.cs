@@ -1,9 +1,9 @@
-﻿// cslog (C# Log)
+// cslog (C# Log)
 // Simple application logger.
 //
-// author: Jared Booker <TheJaydox>
+// author: Emma Booker <RileyIO>
 // license: MIT
-// https://github.com/TheJaydox/cslog
+// https://github.com/rileyio/cslog
 //
 
 using System;
